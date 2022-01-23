@@ -1,4 +1,4 @@
-package com.caffeine.caffeinenotes
+package com.caffeine.caffeinenotes.view.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.caffeine.caffeinenotes.R
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {

@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CaffeineNotes">
         <activity
-            android:name=".HostActivity"
+            android:name=".view.activity.HostActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
