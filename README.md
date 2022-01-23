@@ -22,14 +22,14 @@ Used Room Database and Followed MVVM Architecture Pattern to build the app
 
 ## N.B: Apply Plugins and Dependencies
 
-Apply these plugins
+- Apply these plugins
 ```
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 ```
 
-Add these dependencies
+- Add these dependencies
 ```
 implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
 implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
@@ -40,7 +40,7 @@ implementation "android.arch.persistence.room:runtime:1.1.1"
 kapt "android.arch.persistence.room:compiler:1.1.1"
 ```
 
-Add this into your project build.gradle file
+- Add this into your project build.gradle file
 ```
 classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
 ```
