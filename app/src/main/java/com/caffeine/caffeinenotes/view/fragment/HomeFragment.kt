@@ -43,24 +43,52 @@ class HomeFragment : Fragment() {
             viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
                 getNote(requireContext(), notesList)
             })
+
+            changeButtons(
+                R.color.colorBlack, R.drawable.bg_yellow_25,
+                R.color.colorWhite, R.drawable.bg_blue_stroke_25,
+                R.color.colorWhite, R.drawable.bg_green_stroke_25,
+                R.color.colorWhite, R.drawable.bg_orange_stroke_25
+            )
         }
 
         binding.high.setOnClickListener{
             viewModel.getHighNotes().observe(viewLifecycleOwner, { notesList ->
                 getNote(requireContext(), notesList)
             })
+
+            changeButtons(
+                R.color.colorWhite, R.drawable.bg_yellow_stroke_25,
+                R.color.colorBlack, R.drawable.bg_blue_25,
+                R.color.colorWhite, R.drawable.bg_green_stroke_25,
+                R.color.colorWhite, R.drawable.bg_orange_stroke_25
+            )
         }
 
         binding.medium.setOnClickListener{
             viewModel.getMediumNotes().observe(viewLifecycleOwner, { notesList ->
                 getNote(requireContext(), notesList)
             })
+
+            changeButtons(
+                R.color.colorWhite, R.drawable.bg_yellow_stroke_25,
+                R.color.colorWhite, R.drawable.bg_blue_stroke_25,
+                R.color.colorBlack, R.drawable.bg_green_25,
+                R.color.colorWhite, R.drawable.bg_orange_stroke_25
+            )
         }
 
         binding.low.setOnClickListener{
             viewModel.getLowNotes().observe(viewLifecycleOwner, { notesList ->
                 getNote(requireContext(), notesList)
             })
+
+            changeButtons(
+                R.color.colorWhite, R.drawable.bg_yellow_stroke_25,
+                R.color.colorWhite, R.drawable.bg_blue_stroke_25,
+                R.color.colorWhite, R.drawable.bg_green_stroke_25,
+                R.color.colorBlack, R.drawable.bg_orange_25
+            )
         }
 
         binding.searchBar.addTextChangedListener(object : TextWatcher{
@@ -74,6 +102,20 @@ class HomeFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    private fun changeButtons(allColor : Int, allBg : Int,
+                              blueColor : Int, blueBg : Int,
+                              greenColor : Int, greenBg : Int,
+                              orangeColor : Int, orangeBg : Int){
+        binding.all.setTextColor(resources.getColor(allColor))
+        binding.all.setBackgroundResource(allBg)
+        binding.high.setTextColor(resources.getColor(blueColor))
+        binding.high.setBackgroundResource(blueBg)
+        binding.medium.setTextColor(resources.getColor(greenColor))
+        binding.medium.setBackgroundResource(greenBg)
+        binding.low.setTextColor(resources.getColor(orangeColor))
+        binding.low.setBackgroundResource(orangeBg)
     }
 
     private fun getNote(context: Context, notesList: List<Notes>?) {
