@@ -50,8 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="35dp"
+            android:maxLines="10"
+            android:ellipsize="end"
             android:fontFamily="@font/regular"
-            android:text="This is title\nThis is title\nThis is title\nThis is title\nThis is title\n"
             android:textColor="@color/colorWhite"/>
 
         <TextView
