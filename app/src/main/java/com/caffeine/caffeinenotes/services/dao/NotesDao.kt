@@ -7,16 +7,16 @@ import com.caffeine.caffeinenotes.services.model.Notes
 @Dao
 interface NotesDao {
 
-    @Query ("SELECT * FROM Notes")
+    @Query ("SELECT * FROM Notes ORDER BY id DESC")
     fun getNotes() : LiveData<List<Notes>>
 
-    @Query ("SELECT * FROM Notes WHERE priority=1")
+    @Query ("SELECT * FROM Notes WHERE priority=1 ORDER BY id DESC")
     fun getHighNotes() : LiveData<List<Notes>>
 
-    @Query ("SELECT * FROM Notes WHERE priority=2")
+    @Query ("SELECT * FROM Notes WHERE priority=2 ORDER BY id DESC")
     fun getMediumNotes() : LiveData<List<Notes>>
 
-    @Query ("SELECT * FROM Notes WHERE priority=3")
+    @Query ("SELECT * FROM Notes WHERE priority=3 ORDER BY id DESC")
     fun getLowNotes() : LiveData<List<Notes>>
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
