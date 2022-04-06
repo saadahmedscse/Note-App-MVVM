@@ -9,6 +9,7 @@ import com.caffeine.caffeinenotes.R
 class HostActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+    private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,5 +20,18 @@ class HostActivity : AppCompatActivity() {
 
     override fun onNavigateUp(): Boolean {
         return navController.navigateUp() || super.onNavigateUp()
+    }
+
+    fun updateCount(count : Int){
+        this.count = count
+    }
+
+    override fun onBackPressed() {
+        if (count == 0){
+            finish()
+        }
+        else {
+            super.onBackPressed()
+        }
     }
 }

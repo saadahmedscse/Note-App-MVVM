@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.caffeine.caffeinenotes.R
 import com.caffeine.caffeinenotes.databinding.FragmentCreateNotesBinding
 import com.caffeine.caffeinenotes.services.model.Notes
+import com.caffeine.caffeinenotes.view.activity.HostActivity
 import com.caffeine.caffeinenotes.viewmodel.NotesViewModel
 import java.util.*
 
@@ -94,5 +95,10 @@ class CreateNotesFragment : Fragment() {
                 Toast.makeText(requireContext(), "Note field cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as HostActivity).updateCount(1)
     }
 }

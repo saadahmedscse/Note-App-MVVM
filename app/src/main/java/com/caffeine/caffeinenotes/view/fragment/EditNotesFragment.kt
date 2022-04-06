@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.caffeine.caffeinenotes.R
 import com.caffeine.caffeinenotes.databinding.FragmentEditNotesBinding
 import com.caffeine.caffeinenotes.services.model.Notes
+import com.caffeine.caffeinenotes.view.activity.HostActivity
 import com.caffeine.caffeinenotes.viewmodel.NotesViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
@@ -149,5 +150,9 @@ class EditNotesFragment : Fragment() {
                 Toast.makeText(requireContext(), "Note field cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        (activity as HostActivity).updateCount(1)
     }
 }

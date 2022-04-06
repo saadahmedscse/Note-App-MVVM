@@ -4,11 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,33 +16,34 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.caffeine.caffeinenotes.R
 import com.caffeine.caffeinenotes.databinding.FragmentHomeBinding
 import com.caffeine.caffeinenotes.services.model.Notes
+import com.caffeine.caffeinenotes.view.activity.HostActivity
 import com.caffeine.caffeinenotes.view.adapter.NotesAdapter
 import com.caffeine.caffeinenotes.viewmodel.NotesViewModel
 
 class HomeFragment : Fragment() {
 
-    lateinit var binding : FragmentHomeBinding
-    val viewModel : NotesViewModel by viewModels()
-    var oldNotes = arrayListOf<Notes>()
-    lateinit var adapter : NotesAdapter
+    private lateinit var binding : FragmentHomeBinding
+    private val viewModel : NotesViewModel by viewModels()
+    private var oldNotes = arrayListOf<Notes>()
+    private lateinit var adapter : NotesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
-        viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
+        viewModel.getNotes().observe(viewLifecycleOwner) { notesList ->
             getNote(requireContext(), notesList)
-        })
+        }
 
         binding.btnAdd.setOnClickListener{ view ->
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_createNotesFragment)
         }
 
         binding.all.setOnClickListener{
-            viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
+            viewModel.getNotes().observe(viewLifecycleOwner) { notesList ->
                 getNote(requireContext(), notesList)
-            })
+            }
 
             changeButtons(
                 R.color.colorBlack, R.drawable.bg_yellow_25,
@@ -53,9 +54,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.high.setOnClickListener{
-            viewModel.getHighNotes().observe(viewLifecycleOwner, { notesList ->
+            viewModel.getHighNotes().observe(viewLifecycleOwner) { notesList ->
                 getNote(requireContext(), notesList)
-            })
+            }
 
             changeButtons(
                 R.color.colorWhite, R.drawable.bg_yellow_stroke_25,
@@ -66,9 +67,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.medium.setOnClickListener{
-            viewModel.getMediumNotes().observe(viewLifecycleOwner, { notesList ->
+            viewModel.getMediumNotes().observe(viewLifecycleOwner) { notesList ->
                 getNote(requireContext(), notesList)
-            })
+            }
 
             changeButtons(
                 R.color.colorWhite, R.drawable.bg_yellow_stroke_25,
@@ -79,9 +80,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.low.setOnClickListener{
-            viewModel.getLowNotes().observe(viewLifecycleOwner, { notesList ->
+            viewModel.getLowNotes().observe(viewLifecycleOwner) { notesList ->
                 getNote(requireContext(), notesList)
-            })
+            }
 
             changeButtons(
                 R.color.colorWhite, R.drawable.bg_yellow_stroke_25,
@@ -140,4 +141,8 @@ class HomeFragment : Fragment() {
         adapter.filterNotes(filteredNotes)
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as HostActivity).updateCount(0)
+    }
 }
